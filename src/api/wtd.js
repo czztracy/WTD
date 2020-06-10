@@ -1,7 +1,9 @@
-// import request from "@/utils/request";
+import request from "@/utils/request";
 
-// export function GetCaptcha() {
-//     return request ({
-//         url: ''
-//     })
-// }
+export function getWtdData(params) {
+  return request({
+    url: "/report/getWtdData",
+    method: "POST",
+    data: params
+  });
+}

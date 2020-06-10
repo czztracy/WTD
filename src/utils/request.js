@@ -1,7 +1,8 @@
 import axios from "axios";
 
 const service = axios.create({
-  baseURL: process.env.VUE_APP_BASE_API,
+  // baseURL: `${process.env.VUE_APP_BASE_API}/api`,
+  baseURL: "/api",
   // 请求时间
   timeout: 500000
 });

@@ -3,12 +3,30 @@ function resolve(dir) {
   return path.join(__dirname, "./", dir);
 }
 module.exports = {
+  // 基本路径
+  publicPath: "./",
+  // 配置 webpack-dev-serve 行为
+  devServer: {
+    port: 9527,
+    open: true,
+    host: "127.0.0.1",
+    // 设置代理，用来解决本地开发跨域问题，如果设置了代理，那你本地开发环境的axios的baseUrl要写为 '' ，即空字符串
+    proxy: {
+      "/api": {
+        target: "http://192.168.6.87:8080",
+        changeOrigin: true,
+        pathRewrite: {
+          "^/api": ""
+        }
+      }
+    }
+  },
   chainWebpack: config => {
     // 这里是对环境的配置,不同环境对应不同的BASE_URL,以便axios的请求地址不同
-    config.plugin("define").tap(args => {
-      args[0]["process.env"].BASE_URL = JSON.stringify(process.env.BASE_URL);
-      return args;
-    });
+    // config.plugin("define").tap(args => {
+    //   args[0]["process.env"].BASE_URL = JSON.stringify(process.env.BASE_URL);
+    //   return args;
+    // });
     {
       // svg loader
       const svgRule = config.module.rule("svg"); // 找到svg-loader
@@ -29,14 +47,9 @@ module.exports = {
     }
   },
   // 基本路径
-  publicPath: process.env.NODE_ENV === "production" ? "./" : "./",
+  // publicPath: process.env.NODE_ENV === "production" ? "./" : "./",
   // 输出文件目录
   outputDir: "dist",
   // 生产环境是否生成 sourceMap 文件 不需要生产时的源映射，那么将此设置为false可以加速生产构建
-  productionSourceMap: false,
-  // 配置 webpack-dev-serve 行为
-  devServer: {
-    port: 9527,
-    open: true
-  }
+  productionSourceMap: false
 };

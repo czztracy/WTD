@@ -264,6 +264,12 @@ export default {
     handleEntrustmentInquiry() {
       this.$refs.searchRuleForm.validate(valid => {
         if (valid) {
+          if (
+            !this.searchForm.captchaCode ||
+            this.searchForm.captchaCode === ""
+          ) {
+            this.$message.error("请填写验证码");
+          }
           let params = this.searchForm;
           this.searchIcon = "el-icon-loading";
           this.WTDLoading = true;

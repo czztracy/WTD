@@ -269,6 +269,7 @@ export default {
             this.searchForm.captchaCode === ""
           ) {
             this.$message.error("请填写验证码");
+            return false;
           }
           let params = this.searchForm;
           this.searchIcon = "el-icon-loading";

@@ -433,11 +433,11 @@ export default {
 .content .issue /deep/ .el-card .el-card__body {
   padding: 26px;
 }
-ul li {
+.issue ul li {
   list-style: none;
   line-height: 20px;
 }
-ul {
+.issue ul {
   margin: 0;
   padding: 0;
   color: #666666;

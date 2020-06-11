@@ -520,9 +520,9 @@ export default {
 }
 .content .onlineServe {
   cursor: pointer;
+  color: #409eff;
 }
 .content .onlineServe:hover {
-  color: #409eff;
   text-decoration: underline;
 }
 </style>

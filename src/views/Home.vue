@@ -233,7 +233,8 @@ export default {
       form: {},
       tableData: null,
       // 记录催单
-      reminderArr: []
+      reminderArr: [],
+      WTDLoading: false
     };
   },
   methods: {

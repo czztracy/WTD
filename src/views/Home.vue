@@ -258,6 +258,7 @@ export default {
       this.YZMUrl = `${
         this.baseUrl
       }/report/captcha.jpg?${new Date().getTime()}`;
+      this.$set(this.searchForm, "captchaCode", "");
     },
     // 委托单查询
     handleEntrustmentInquiry() {
@@ -274,6 +275,7 @@ export default {
               if (res.code === 20000) {
                 this.tableData = res.data.data.items;
                 this.total = res.data.data.total;
+                this.$set(this.searchForm, "captchaCode", "");
               }
             })
             .catch(error => {

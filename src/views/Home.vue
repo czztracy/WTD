@@ -68,8 +68,8 @@
         <el-card v-if="tableData && tableData.length > 0" class="box-card">
           <el-row>
             <el-select v-model="searchForm.dateType" placeholder="请选择">
-              <el-option label="近三个月委托单" value="0"></el-option>
-              <el-option label="近一年委托单" value="1"></el-option>
+              <!-- <el-option label="近三个月委托单" value="0"></el-option>
+              <el-option label="近一年委托单" value="1"></el-option> -->
               <el-option label="全部委托单" value="2"></el-option>
             </el-select>
             <span class="hjwtd">合计委托单数量：{{ total }}</span>
@@ -270,7 +270,7 @@ export default {
             .then(res => {
               this.searchIcon = "el-icon-search";
               this.WTDLoading = false;
-              // this.GetYZMInfo();
+              this.GetYZMInfo();
               if (res.code === 20000) {
                 this.tableData = res.data.data.items;
                 this.total = res.data.data.total;

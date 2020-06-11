@@ -1,8 +1,14 @@
 <template>
   <div class="home">
     <div class="BoxChunck">
-      <div class="BGBox">
-        <img :src="ImgUrl" />
+      <div
+        class="BGBox"
+        :style="{
+          background: `url(${ImgUrl}) repeat center`,
+          'background-size': 'cover'
+        }"
+      >
+        <!-- <img :src="ImgUrl" /> -->
       </div>
     </div>
     <div class="content">
@@ -114,7 +120,7 @@
 
             <el-row>
               <div
-                v-if="item.status !== '已完成'"
+                v-if="item.status !== '已完成' && item.status !== '完成'"
                 style="text-align: right; margin-top: 16px;"
               >
                 <el-button type="primary" @click="handleReminder(index)"
@@ -123,9 +129,9 @@
               </div>
               <div
                 v-else
-                style="text-align: center; font-size: 13px; color: #606266; margin-top: 16px;"
+                style="text-align: center; font-size: 13px; color: #606266; margin-top: 16px; color: red;"
               >
-                您的委托单已完成，感谢您的选择，如有新的测试需求请联系在线客服咨询
+                您的订单已完成，感谢您的选择，如有新的测试需求请联系在线客服咨询
               </div>
             </el-row>
           </div>
@@ -149,7 +155,11 @@
           <div style="padding: 6px;">
             <div class="undefind1">抱歉！未查到相关信息</div>
             <div class="undefind2">
-              请检查委托单编号或手机号输入是否正确，或拨打售后客服热线0532-58668377，或咨询在线客服
+              请检查委托单编号或手机号输入是否正确，或拨打售后客服热线0532-58668377，或<span
+                class="onlineServe"
+                @click="handleOnlineServe"
+                >咨询在线客服</span
+              >
             </div>
           </div>
         </el-card>
@@ -189,9 +199,14 @@
             <li>8. <span>完成： 订单已完结，报告已发送。</span></li>
           </ul>
 
-          <p class="tip" @click="addFavorite">
+          <p class="tip">
             <i class="el-icon-star-on"></i>
-            <span>温馨提示：点击这里 收藏本页面，下次查询更方便！</span>
+            <span
+              >温馨提示：<span class="Click" @click="addFavorite"
+                >点击这里</span
+              >
+              收藏本页面，下次查询更方便！</span
+            >
           </p>
         </el-card>
       </div>
@@ -255,6 +270,7 @@ export default {
             .then(res => {
               this.searchIcon = "el-icon-search";
               this.WTDLoading = false;
+              // this.GetYZMInfo();
               if (res.code === 20000) {
                 this.tableData = res.data.data.items;
                 this.total = res.data.data.total;
@@ -319,6 +335,13 @@ export default {
           type: "warning"
         });
       }
+    },
+    // 咨询在线客户
+    handleOnlineServe() {
+      window.open(
+        "http://p.qiao.baidu.com/cps/chat?siteId=11693461&userId=25113089",
+        "_blank"
+      );
     }
   },
   created() {
@@ -329,9 +352,9 @@ export default {
 
 <style scoped>
 .home {
-  width: 80%;
-  min-width: 1360px;
-  max-width: 1360px;
+  width: 100%;
+  /* min-width: 1360px;
+  max-width: 1360px; */
   margin: 0 auto;
   position: relative;
 }
@@ -348,8 +371,9 @@ export default {
 .content {
   width: 800px;
   position: absolute;
-  top: 208px;
-  right: 280px;
+  top: 27%;
+  right: 50%;
+  margin-right: -400px;
 }
 .content .TEXT {
   color: #ffffff;
@@ -441,7 +465,10 @@ ul {
   color: #ff9900;
   font-weight: 600;
   margin-top: 70px;
+}
+.content .issue .tip .Click {
   cursor: pointer;
+  color: #ff6000;
 }
 .content .issue p.tip i {
   font-size: 18px;
@@ -481,5 +508,12 @@ ul {
   color: #606266;
   font-size: 14px;
   margin-top: 28px;
+}
+.content .onlineServe {
+  cursor: pointer;
+}
+.content .onlineServe:hover {
+  color: #409eff;
+  text-decoration: underline;
 }
 </style>

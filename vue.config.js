@@ -13,7 +13,7 @@ module.exports = {
     // 设置代理，用来解决本地开发跨域问题，如果设置了代理，那你本地开发环境的axios的baseUrl要写为 '' ，即空字符串
     proxy: {
       "/api": {
-        target: "http://192.168.6.87:8080",
+        target: "http://10.19.1.91:18899",
         changeOrigin: true,
         pathRewrite: {
           "^/api": ""

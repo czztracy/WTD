@@ -131,7 +131,11 @@
                 v-else
                 style="text-align: center; font-size: 13px; color: #606266; margin-top: 16px; color: red;"
               >
-                您的订单已完成，感谢您的选择，如有新的测试需求请联系在线客服咨询
+                您的订单已完成，感谢您的选择，如有新的测试需求请<span
+                  class="onlineServe"
+                  @click="handleOnlineServe"
+                  >咨询在线客服</span
+                >
               </div>
             </el-row>
           </div>
@@ -202,7 +206,8 @@
           <p class="tip">
             <i class="el-icon-star-on"></i>
             <span
-              >温馨提示：<span class="Click" @click="addFavorite"
+              >温馨提示：
+              <span class="Click" rel="sidebar" @click="addFavorite"
                 >点击这里</span
               >
               收藏本页面，下次查询更方便！</span
@@ -317,7 +322,8 @@ export default {
         }
       } else if (window.sidebar) {
         // firfox等浏览器
-        window.sidebar.addPanel(title, url, "");
+        alert("您的浏览器不支持,请按 Ctrl+D 手动收藏!");
+        // window.sidebar.addPanel(title, url, "");
       } else {
         alert("您的浏览器不支持,请按 Ctrl+D 手动收藏!");
       }

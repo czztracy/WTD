@@ -238,10 +238,10 @@ export default {
       searchRules: {
         wtdno: [
           { required: true, message: "请输入委托单号或手机号", trigger: "blur" }
-        ],
-        captchaCode: [
-          { required: true, message: "请输入验证码", trigger: "blur" }
         ]
+        // captchaCode: [
+        //   { required: true, message: "请输入验证码", trigger: "blur" }
+        // ]
       },
       YZMUrl: "",
       searchIcon: "el-icon-search",

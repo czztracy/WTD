@@ -2,8 +2,8 @@ import axios from "axios";
 import { Message } from "element-ui";
 
 const service = axios.create({
-  // baseURL: process.env.VUE_APP_BASE_API,
-  baseURL: "/api",
+  baseURL: process.env.VUE_APP_BASE_API,
+  // baseURL: "/api",
   // 请求时间
   timeout: 500000
 });

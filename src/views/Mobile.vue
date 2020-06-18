@@ -4,6 +4,13 @@
 
 <script>
 export default {
+  name: "Mobile",
+  methods: {}
+};
+</script>
+
+<script>
+export default {
   name: "Mobile"
 };
 </script>

@@ -14,10 +14,20 @@ export default {
         /(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i
       );
       return flag;
+    },
+    // 移动端适配
+    initRem() {
+      let cale =
+        window.screen.availWidth > 750 ? 2 : window.screen.availWidth / 375;
+      window.document.documentElement.style.fontSize = `${100 * cale}px`;
     }
   },
   mounted() {
     if (this.isMobile()) {
+      this.initRem();
+      window.addEventListener("resize", function() {
+        this.initRem();
+      });
       this.$router.replace("/Mobile");
     } else {
       this.$router.replace("/");
